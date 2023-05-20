@@ -20,6 +20,26 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('no1/index.php');
 	}
+	public function submit()
+	{
+		$input_text = $this->input->post('text');
+
+        $reversed_text = $this->reverse_string($input_text);
+
+        $data['reversed_text'] = $reversed_text;
+        $this->load->view('no1/submit', $data);
+	}
+	private function reverse_string($string)
+    {
+        $length = strlen($string);
+        $reversed_string = '';
+
+        for ($i = $length - 1; $i >= 0; $i--) {
+            $reversed_string .= $string[$i];
+        }
+
+        return $reversed_string;
+    }
 }
